@@ -147,7 +147,7 @@ control 'cis-dil-benchmark-1.1.1.8' do
   tag cis: 'distribution-independent-linux:1.1.1.8'
   tag level: 1
 
-  if os.family == 'redhat' then
+  if os.name != 'amazon' && os.family == 'redhat' then
     # redhat family loads 2 modules vfat and msdos and will show both modules when checking
     describe linux_module('vfat') do
       it { should_not be_loaded }
