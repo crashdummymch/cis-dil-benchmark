@@ -125,7 +125,7 @@ control 'cis-dil-benchmark-1.1.1.7' do
       it { should_not be_loaded }
       its(:command) { should match(%r{^insmod.*crc-itu-t.koinstall /bin/true$}) }
     end
-  elsif os.family == 'redhat' then
+  elsif os.name != 'amazon' && os.family == 'redhat' then
     # redhat family depends on the crc-itu-t.ko.xz module
     describe linux_module('udf') do
       it { should_not be_loaded }
