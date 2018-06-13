@@ -63,7 +63,7 @@ class LinuxModule < Inspec.resource(1)
     modinfo_cmd = if inspec.os.redhat? || inspec.os.name == 'fedora'
                     "/sbin/modprobe -n -v #{@module} | tail -n 1 | awk '{$1=$1;print}'"
                   else
-                    "modprobe --showconfig | grep ${@module} | tail -n 1 | sed 's/#{@module}//g' | awk '{$1=$1;print}'"
+                    "modprobe --showconfig | grep #{@module} | tail -n 1 | sed 's/#{@module}//g\' | awk '{$1=$1;print}'"
                   end
 
     cmd = inspec.command(modinfo_cmd)
